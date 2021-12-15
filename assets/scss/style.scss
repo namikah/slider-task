@@ -1,3 +1,9 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: cadetblue;
+}
 .container {
   max-width: 1150px;
   margin: 80px auto;
@@ -15,7 +21,7 @@
         width: 250px;
         height: 200px;
         transition: 1s;
-        &:hover{
+        &:hover {
           transform: scale(1.1);
         }
       }
@@ -45,8 +51,8 @@
     }
     .close {
       position: absolute;
-      top: -10px;
-      right: -10px;
+      top: -15px;
+      right: -15px;
       background-color: black;
       border-radius: 50%;
       cursor: pointer;
@@ -62,17 +68,27 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
       .left-arrow {
-        background-color: white;
         border-radius: 50%;
-        font-size: 20px;
+        font-size: 25px;
+        font-weight: 900;
         cursor: pointer;
+        transition: 0.5s;
+        padding: 0 20px;
+        &:hover {
+          transform: scale(1.2);
+        }
       }
       .right-arrow {
-        background-color: white;
         border-radius: 50%;
-        font-size: 20px;
+        font-size: 25px;
         cursor: pointer;
+        transition: 0.5s;
+        padding: 0 20px;
+        &:hover {
+          transform: scale(1.2);
+        }
       }
     }
   }

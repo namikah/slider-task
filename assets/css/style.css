@@ -1,3 +1,11 @@
+body {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: cadetblue;
+}
+
 .container {
   max-width: 1150px;
   margin: 80px auto;
@@ -69,8 +77,8 @@
 
 .popup .inner .close {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -15px;
+  right: -15px;
   background-color: black;
   border-radius: 50%;
   cursor: pointer;
@@ -94,19 +102,35 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: white;
 }
 
 .popup .inner .arrows .left-arrow {
-  background-color: white;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: 900;
   cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 0 20px;
+}
+
+.popup .inner .arrows .left-arrow:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .popup .inner .arrows .right-arrow {
-  background-color: white;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 25px;
   cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 0 20px;
+}
+
+.popup .inner .arrows .right-arrow:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 /*# sourceMappingURL=style.css.map */
