@@ -13,7 +13,13 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: 30px;
+}
+
+.container .images-cards a {
+  overflow: hidden;
 }
 
 .container .images-cards a img {
@@ -21,6 +27,13 @@
   background-size: cover;
   width: 250px;
   height: 200px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.container .images-cards a img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .popup {
