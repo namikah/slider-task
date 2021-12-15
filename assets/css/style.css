@@ -1,0 +1,99 @@
+.container {
+  max-width: 1150px;
+  margin: 80px auto;
+}
+
+.container .images-cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 30px;
+}
+
+.container .images-cards a img {
+  max-width: 100%;
+  background-size: cover;
+  width: 250px;
+  height: 200px;
+}
+
+.popup {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.699);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+}
+
+.popup .inner {
+  position: relative;
+  border: 10px solid white;
+}
+
+.popup .inner .slider-image {
+  max-width: 800px;
+  max-height: 600px;
+  background-color: white;
+}
+
+.popup .inner .slider-image img {
+  max-width: 100%;
+}
+
+.popup .inner .close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.popup .inner .close i {
+  color: white;
+  font-size: 20px;
+}
+
+.popup .inner .arrows {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.popup .inner .arrows .left-arrow {
+  background-color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup .inner .arrows .right-arrow {
+  background-color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
