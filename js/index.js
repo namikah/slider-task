@@ -16,9 +16,13 @@ loginBtn.addEventListener("click", (e) => {
     let welcomeText = document.createElement("h1");
     welcomeText.classList.add("user-style");
 
+    if (username.value.length < 8) {
+        window.alert("incorrect. Username at least 8 characters");
+        username.value = "";
+        return;
+    }
     let counter = 0;
     Array.from(username.value).forEach(element => {
-
         if (!isValid(element)) {
             counter++;
         }
