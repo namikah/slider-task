@@ -1,10 +1,25 @@
+let container = document.querySelector(".container");
+let imagesCards = document.querySelector(".images-cards");
 let images = document.querySelectorAll(".images-cards a");
 let popup = document.querySelector(".popup");
 let bigImage = document.querySelector(".popup .inner .slider-image img");
 let close = document.querySelector(".popup .inner .close");
 let rightArrow = document.querySelector(".arrows .right-arrow i");
 let leftArrow = document.querySelector(".arrows .left-arrow i")
+let formLogin = document.querySelector(".form-login-user");
+let loginBtn = document.querySelector(".login-btn");
+let username = document.querySelector(".user-name");
+let password = document.querySelector(".user-password");
 
+loginBtn.addEventListener("click",(e)=>{
+    e.preventDefault();
+    let welcomeText = document.createElement("div");
+    welcomeText.classList.add("user-style");
+    welcomeText.innerText ="WELCOME, " + username.value.toUpperCase();
+    container.insertBefore(welcomeText,container.firstChild);
+    imagesCards.style.display = "flex";
+    formLogin.style.display = "none";
+})
 //image click for biggest
 images.forEach(element => {
     element.addEventListener("click", function (e) {
@@ -26,6 +41,21 @@ leftArrow.addEventListener("click", (e) => {
     changePrev(curElement);
 })
 
+//keys action for popup
+document.addEventListener("keydown", (e) => {
+    if (e.code === "ArrowRight") {
+        curElement = document.querySelector(".show-image");
+        changeNext(curElement);
+    }
+    if (e.code === "ArrowLeft") {
+        curElement = document.querySelector(".show-image");
+        changePrev(curElement);
+    }
+    if (e.code === "Escape") {
+        closePopup();
+    }
+})
+
 //close popup with X
 close.addEventListener("click", () => {
     closePopup();
@@ -34,14 +64,6 @@ close.addEventListener("click", () => {
 //Close popup with side click
 popup.addEventListener("click", (e) => {
     if (e.target.classList.contains("popup")) {
-        closePopup();
-    }
-})
-
-//Close popup with Escape
-document.addEventListener("keydown", (e) => {
-    console.log(e);
-    if (e.code === "Escape") {
         closePopup();
     }
 })
