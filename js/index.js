@@ -33,7 +33,7 @@ loginBtn.addEventListener("click", (e) => {
         imagesCards.style.display = "flex";
         formLogin.style.display = "none";
     } else {
-        window.alert("incorrect. please valid username: not use ! @ # $ % & * () ? \\ / +");
+        window.alert("incorrect. please valid username: not use ' ' ! @ # $ % & * () ? \\ / +");
         username.value = "";
         return;
     }
@@ -152,6 +152,7 @@ function isValid(char) {
         char !== "&" &&
         char !== "?" &&
         char !== "(" &&
+        char !== " " &&
         char !== ")")
         return true;
 
