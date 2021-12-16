@@ -11,14 +11,29 @@ let loginBtn = document.querySelector(".login-btn");
 let username = document.querySelector(".user-name");
 let password = document.querySelector(".user-password");
 
-loginBtn.addEventListener("click",(e)=>{
+loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    let welcomeText = document.createElement("div");
+    let welcomeText = document.createElement("h1");
     welcomeText.classList.add("user-style");
-    welcomeText.innerText ="WELCOME, " + username.value.toUpperCase();
-    container.insertBefore(welcomeText,container.firstChild);
-    imagesCards.style.display = "flex";
-    formLogin.style.display = "none";
+
+    let counter = 0;
+    Array.from(username.value).forEach(element => {
+
+        if (!isValid(element)) {
+            counter++;
+        }
+    });
+    if (counter == 0) {
+        welcomeText.innerText = "WELCOME, " + username.value.toUpperCase();
+        container.insertBefore(welcomeText, container.firstChild);
+        imagesCards.style.display = "flex";
+        formLogin.style.display = "none";
+    } else {
+        window.alert("incorrect. please valid username: not use ! @ # $ % & * () ? \\ / +");
+        username.value = "";
+        return;
+    }
+
 })
 //image click for biggest
 images.forEach(element => {
@@ -116,4 +131,25 @@ function resetClassList() {
     images.forEach(item => {
         item.classList.remove("show-image")
     });
+}
+
+function isValid(char) {
+    if (char !== "*" &&
+        char !== "/" &&
+        char !== "/" &&
+        char !== "\\" &&
+        char !== "," &&
+        char !== "+" &&
+        char !== "@" &&
+        char !== "!" &&
+        char !== "#" &&
+        char !== "$" &&
+        char !== "%" &&
+        char !== "&" &&
+        char !== "?" &&
+        char !== "(" &&
+        char !== ")")
+        return true;
+
+    return false;
 }
