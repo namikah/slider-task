@@ -9,6 +9,33 @@ let leftArrow = document.querySelector(".arrows .left-arrow i")
 let formLogin = document.querySelector("#form-sign-in");
 let loginBtn = document.querySelector(".login-btn");
 let username = document.querySelector(".user-name");
+let uploadIcon = document.querySelector(".upload-icon");
+let uploadBtn = document.querySelector(".upload-btn");
+
+uploadIcon.addEventListener("click", () => {
+    uploadBtn.click();
+})
+
+uploadBtn.addEventListener("change", function (e) {
+    const { files } = e.target;
+
+    for (const file of files) {
+        const fileReader = new FileReader();
+        fileReader.onloadend = function (e) {
+            const { result } = e.target;
+
+            const aTag = document.createElement("a");
+            aTag.setAttribute("href", result);
+            const img = document.createElement("img");
+            img.setAttribute("src", result);
+            // const h2 = document.createElement("h2");
+            // h2.innerText = file.name;
+            aTag.appendChild(img);
+            imagesCards.appendChild(aTag);
+        };
+        fileReader.readAsDataURL(file);
+    }
+})
 
 loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
