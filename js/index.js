@@ -9,7 +9,7 @@ let leftArrow = document.querySelector(".arrows .left-arrow i")
 let formLogin = document.querySelector(".form-login-user");
 let loginBtn = document.querySelector(".login-btn");
 let username = document.querySelector(".user-name");
-let password = document.querySelector(".user-password");
+// let password = document.querySelector(".user-password");
 
 loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
