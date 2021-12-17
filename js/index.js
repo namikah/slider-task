@@ -20,18 +20,19 @@ uploadBtn.addEventListener("change", function (e) {
     const { files } = e.target;
 
     for (const file of files) {
-        const fileReader = new FileReader();
+        let fileReader = new FileReader();
         fileReader.onloadend = function (e) {
             const { result } = e.target;
 
-            const aTag = document.createElement("a");
+            let aTag = document.createElement("a");
+            let img = document.createElement("img");
             aTag.setAttribute("href", result);
-            const img = document.createElement("img");
             img.setAttribute("src", result);
             // const h2 = document.createElement("h2");
             // h2.innerText = file.name;
             aTag.appendChild(img);
             imagesCards.appendChild(aTag);
+            console.log(imagesCards);
         };
         fileReader.readAsDataURL(file);
     }
@@ -56,8 +57,11 @@ loginBtn.addEventListener("click", (e) => {
     if (counter == 0) {
         welcomeText.innerText = "WELCOME, " + username.value.toUpperCase();
         imageGallery.insertBefore(welcomeText, imageGallery.firstChild);
-        imageGallery.style.display = "block";
+        formLogin.style.transform = "translateY(-100%)";
+        setTimeout(() => {
         formLogin.style.display = "none";
+        imageGallery.style.display = "block";
+        }, 500);
     } else {
         window.alert("incorrect. please valid username: not use ' ' ! @ # $ % & * () ? \\ / +");
         username.value = "";
@@ -80,11 +84,16 @@ rightArrow.addEventListener("click", (e) => {
     curElement = document.querySelector(".show-image");
     changeNext(curElement);
 })
+
 //left-arrow click for change image
 leftArrow.addEventListener("click", (e) => {
     curElement = document.querySelector(".show-image");
     changePrev(curElement);
 })
+
+setInterval(function() {
+    rightArrow.click();
+},4000)
 
 //keys action for popup
 document.addEventListener("keydown", (e) => {
@@ -127,6 +136,7 @@ function openPopup(item) {
 
 //change images next function
 function changeNext(currentElement) {
+    if(popup.style.display !== "flex") return
     resetClassList();
     if (currentElement.nextElementSibling !== null) {
         currentElement.nextElementSibling.classList.add("show-image");
@@ -137,11 +147,11 @@ function changeNext(currentElement) {
         currentElement.parentElement.children[0].classList.add("show-image");
         openPopup(currentElement.parentElement.children[0]);
     }
-    // currentElement.classList.remove("show-image");
 }
 
 //change images prev function
 function changePrev(currentElement) {
+    if(popup.style.display !== "flex") return
     resetClassList();
     let length = currentElement.parentElement.children.length;
 
@@ -154,12 +164,11 @@ function changePrev(currentElement) {
         currentElement.parentElement.children[length - 1].classList.add("show-image");
         openPopup(currentElement.parentElement.children[length - 1]);
     }
-    // currentElement.classList.remove("show-image");
 }
 
 function resetClassList() {
     images.forEach(item => {
-        item.classList.remove("show-image")
+        item.classList.remove("show-image");
     });
 }
 
