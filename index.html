@@ -13,55 +13,63 @@
 </head>
 
 <body>
-    <div class="container">
-        <section id="image-gallery">
-            <form class="form-login-user">
-                <div class="mb-3 user-name-login">
-                    <label for="inputText" class="form-label">Please enter your name</label>
-                    <input type="text" class="form-control user-name" id="inputText">
+    <main>
+        <div class="container">
+            <section id="form-sign-in">
+                <form class="form-login-user">
+                    <div class="mb-3 user-name-login">
+                        <label for="inputText" class="form-label label-login">Please enter your name</label>
+                        <input type="text" class="form-control user-name" id="inputText">
+                    </div>
+                    <button type="submit" class="btn btn-primary login-btn">Submit</button>
+                </form>
+            </section>
+            <section id="image-gallery">
+                <div class="images-cards">
+                    <a href="./assets/image/img-big-1.jpg">
+                        <img src="./assets/image/img-big-1.jpg" alt="">
+                    </a>
+                    <a href="./assets/image/img-big-2.jpg">
+                        <img src="./assets/image/img-big-2.jpg" alt="">
+                    </a>
+                    <a href="./assets/image/img-big-3.jpg">
+                        <img src="./assets/image/img-big-3.jpg" alt="">
+                    </a>
+                    <a href="./assets/image/img_1_big.jpeg">
+                        <img src="./assets/image/img_1_small.jpeg" alt="">
+                    </a>
+                    <a href="./assets/image/img_2_big.jpeg">
+                        <img src="./assets/image/img_2_small.jpeg" alt="">
+                    </a>
+                    <a href="./assets/image/img_3_big.jpeg">
+                        <img src="./assets/image/img_3_small.jpeg" alt="">
+                    </a>
                 </div>
-                <button type="submit" class="btn btn-primary login-btn">Submit</button>
-            </form>
-            <div class="images-cards">
-                <a href="./assets/image/img-big-1.jpg">
-                    <img src="./assets/image/img-big-1.jpg" alt="">
-                </a>
-                <a href="./assets/image/img-big-2.jpg">
-                    <img src="./assets/image/img-big-2.jpg" alt="">
-                </a>
-                <a href="./assets/image/img-big-3.jpg">
-                    <img src="./assets/image/img-big-3.jpg" alt="">
-                </a>
-                <a href="./assets/image/img_1_big.jpeg">
-                    <img src="./assets/image/img_1_small.jpeg" alt="">
-                </a>
-                <a href="./assets/image/img_2_big.jpeg">
-                    <img src="./assets/image/img_2_small.jpeg" alt="">
-                </a>
-                <a href="./assets/image/img_3_big.jpeg">
-                    <img src="./assets/image/img_3_small.jpeg" alt="">
-                </a>
-            </div>
-        </section>
-    </div>
-    <div class="popup">
-        <div class="inner">
-            <div class="slider-image">
-                <img class="img-fluid" src="./assets/image/img-big-1.jpg" alt="">
-            </div>
-            <div class="close">
-                <i class="far fa-times-circle"></i>
-            </div>
-            <div class="arrows">
-                <div class="left-arrow">
-                    <i class="fas fa-arrow-left"></i>
+                <div class="uploda-image">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <input class="upload-btn" type="file">
                 </div>
-                <div class="right-arrow">
-                    <i class="fas fa-arrow-right"></i>
+            </section>
+        </div>
+        <div class="popup">
+            <div class="inner">
+                <div class="slider-image">
+                    <img class="img-fluid" src="./assets/image/img-big-1.jpg" alt="">
+                </div>
+                <div class="close">
+                    <i class="far fa-times-circle"></i>
+                </div>
+                <div class="arrows">
+                    <div class="left-arrow">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                    <div class="right-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
     <script src="./js/index.js"></script>
 </body>
 

@@ -1,4 +1,4 @@
-let container = document.querySelector(".container");
+let imageGallery = document.querySelector("#image-gallery");
 let imagesCards = document.querySelector(".images-cards");
 let images = document.querySelectorAll(".images-cards a");
 let popup = document.querySelector(".popup");
@@ -6,18 +6,17 @@ let bigImage = document.querySelector(".popup .inner .slider-image img");
 let close = document.querySelector(".popup .inner .close");
 let rightArrow = document.querySelector(".arrows .right-arrow i");
 let leftArrow = document.querySelector(".arrows .left-arrow i")
-let formLogin = document.querySelector(".form-login-user");
+let formLogin = document.querySelector("#form-sign-in");
 let loginBtn = document.querySelector(".login-btn");
 let username = document.querySelector(".user-name");
-// let password = document.querySelector(".user-password");
 
 loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
     let welcomeText = document.createElement("h1");
     welcomeText.classList.add("user-style");
 
-    if (username.value.length < 8) {
-        window.alert("incorrect. Username at least 8 characters");
+    if (username.value.length < 3) {
+        window.alert("incorrect. Username at least 3 characters");
         username.value = "";
         return;
     }
@@ -29,8 +28,8 @@ loginBtn.addEventListener("click", (e) => {
     });
     if (counter == 0) {
         welcomeText.innerText = "WELCOME, " + username.value.toUpperCase();
-        container.insertBefore(welcomeText, container.firstChild);
-        imagesCards.style.display = "flex";
+        imageGallery.insertBefore(welcomeText, imageGallery.firstChild);
+        imageGallery.style.display = "block";
         formLogin.style.display = "none";
     } else {
         window.alert("incorrect. please valid username: not use ' ' ! @ # $ % & * () ? \\ / +");
