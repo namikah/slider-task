@@ -1,6 +1,6 @@
 let imageGallery = document.querySelector("#image-gallery");
 let imagesCards = document.querySelector(".images-cards");
-let images = document.querySelectorAll(".images-cards a");
+let images = document.querySelectorAll(".img-a-source");
 let popup = document.querySelector(".popup");
 let bigImage = document.querySelector(".popup .inner .slider-image img");
 let close = document.querySelector(".popup .inner .close");
@@ -26,15 +26,17 @@ uploadBtn.addEventListener("change", function (e) {
 
             let aTag = document.createElement("a");
             let img = document.createElement("img");
+            aTag.classList.add("img-a-source");
+            aTag.setAttribute("alt", "image");
             aTag.setAttribute("href", result);
             img.setAttribute("src", result);
             // const h2 = document.createElement("h2");
             // h2.innerText = file.name;
             aTag.appendChild(img);
             imagesCards.appendChild(aTag);
-            console.log(imagesCards);
         };
         fileReader.readAsDataURL(file);
+        console.log( fileReader);
     }
 })
 
@@ -57,11 +59,13 @@ loginBtn.addEventListener("click", (e) => {
     if (counter == 0) {
         welcomeText.innerText = "WELCOME, " + username.value.toUpperCase();
         imageGallery.insertBefore(welcomeText, imageGallery.firstChild);
-        formLogin.style.transform = "translateY(-100%)";
+        // formLogin.style.transform = "translateY(-100%)";
+        formLogin.style.opacity = "0";
+
         setTimeout(() => {
-        formLogin.style.display = "none";
-        imageGallery.style.display = "block";
-        }, 500);
+            formLogin.style.display = "none";
+            imageGallery.style.display = "block";
+        }, 800);
     } else {
         window.alert("incorrect. please valid username: not use ' ' ! @ # $ % & * () ? \\ / +");
         username.value = "";
@@ -76,8 +80,13 @@ images.forEach(element => {
         e.preventDefault();
         openPopup(this);
         this.classList.add("show-image");
+        console.log(this);
     })
 });
+
+const autoChangeInterval = setInterval(function () {
+    rightArrow.click();
+}, 1000)
 
 //right-arrow click for change image
 rightArrow.addEventListener("click", (e) => {
@@ -91,22 +100,21 @@ leftArrow.addEventListener("click", (e) => {
     changePrev(curElement);
 })
 
-setInterval(function() {
-    rightArrow.click();
-},4000)
-
 //keys action for popup
 document.addEventListener("keydown", (e) => {
-    if (e.code === "ArrowRight") {
-        curElement = document.querySelector(".show-image");
-        changeNext(curElement);
-    }
-    if (e.code === "ArrowLeft") {
-        curElement = document.querySelector(".show-image");
-        changePrev(curElement);
-    }
-    if (e.code === "Escape") {
-        closePopup();
+    curElement = document.querySelector(".show-image");
+    switch (e.code) {
+        case "ArrowRight":
+            changeNext(curElement);
+            break;
+        case "ArrowLeft":
+            changePrev(curElement);
+            break;
+        case "Escape":
+            closePopup();
+            break;
+        default:
+            break;
     }
 })
 
@@ -136,7 +144,7 @@ function openPopup(item) {
 
 //change images next function
 function changeNext(currentElement) {
-    if(popup.style.display !== "flex") return
+    if (popup.style.display !== "flex") return
     resetClassList();
     if (currentElement.nextElementSibling !== null) {
         currentElement.nextElementSibling.classList.add("show-image");
@@ -151,7 +159,7 @@ function changeNext(currentElement) {
 
 //change images prev function
 function changePrev(currentElement) {
-    if(popup.style.display !== "flex") return
+    if (popup.style.display !== "flex") return
     resetClassList();
     let length = currentElement.parentElement.children.length;
 

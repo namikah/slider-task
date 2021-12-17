@@ -27,6 +27,9 @@ body {
 			cursor: pointer;
 			padding: 20px;
 			transition: 0.5s;
+			right: 0;
+			top: 0;
+			position: absolute;
 			&:hover {
 				color: rgb(250, 140, 15);
 			}
@@ -67,6 +70,7 @@ body {
 		}
 	}
 }
+
 .popup {
 	position: fixed;
 	background-color: rgba(0, 0, 0, 0.473);

@@ -44,6 +44,9 @@ body {
   padding: 20px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  right: 0;
+  top: 0;
+  position: absolute;
 }
 
 .container #image-gallery .upload-icon:hover {
