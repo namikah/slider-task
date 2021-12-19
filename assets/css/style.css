@@ -77,8 +77,8 @@ body {
   overflow: hidden;
   width: 250px;
   height: 200px;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .container #image-gallery .images-cards a img {

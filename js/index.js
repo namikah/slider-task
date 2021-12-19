@@ -12,10 +12,12 @@ let username = document.querySelector(".user-name");
 let uploadIcon = document.querySelector(".upload-icon");
 let uploadBtn = document.querySelector(".upload-btn");
 let autoSlideInterval;
+
 //upload image
 uploadIcon.addEventListener("click", () => {
     uploadBtn.click();
 })
+//upload image
 uploadBtn.addEventListener("change", function (e) {
     const { files } = e.target;
 
@@ -28,7 +30,7 @@ uploadBtn.addEventListener("change", function (e) {
         fileReader.readAsDataURL(file);
     }
 })
-
+//for enter gallery
 loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
     let welcomeText = document.createElement("h1");
@@ -48,12 +50,21 @@ loginBtn.addEventListener("click", (e) => {
     if (counter == 0) {
         welcomeText.innerText = "WELCOME, " + username.value.toUpperCase();
         imageGallery.insertBefore(welcomeText, imageGallery.firstChild);
-        // formLogin.style.transform = "translateY(-100%)";
         formLogin.style.opacity = "0";
-
+        formLogin.style.transition = "1s";
         setTimeout(() => {
             formLogin.style.display = "none";
             imageGallery.style.display = "block";
+            imageGallery.style.transition = "2s";
+            imageGallery.style.opacity = "0";
+            imageGallery.style.transform = "scale(0.0)";
+            imageGallery.firstChild.style.color = "rgb(179 69 115)";
+
+            setTimeout(() => {
+                imageGallery.style.opacity = "1";
+                imageGallery.style.transform = "scale(1)";
+
+            }, 300);
         }, 800);
     } else {
         window.alert("incorrect. please valid username: not use ' ' ! @ # $ % & * () ? \\ / +");
@@ -122,27 +133,23 @@ document.addEventListener("keydown", (e) => {
 close.addEventListener("click", () => {
     closePopup();
 })
-
 //Close popup with side click
 popup.addEventListener("click", (e) => {
     if (e.target.classList.contains("popup")) {
         closePopup();
     }
 })
-
 //close popup function
 function closePopup() {
     popup.style.display = "none";
     stopAutoSlide();
 }
-
 //open popup function
 function openPopup(item) {
     let imgSrc = item.getAttribute("href");
     bigImage.setAttribute("src", imgSrc);
     popup.style.display = "flex";
 }
-
 //change images next function
 function changeNext(currentElement) {
     if (popup.style.display !== "flex") return
@@ -157,7 +164,6 @@ function changeNext(currentElement) {
         openPopup(currentElement.parentElement.children[0]);
     }
 }
-
 //change images prev function
 function changePrev(currentElement) {
     if (popup.style.display !== "flex") return
@@ -174,7 +180,7 @@ function changePrev(currentElement) {
         openPopup(currentElement.parentElement.children[length - 1]);
     }
 }
-
+//reset all active image class
 function resetClassList() {
     images.forEach(item => {
         item.classList.remove("show-image");
@@ -197,6 +203,7 @@ function startAutoSlide() {
 function stopAutoSlide() {
     clearInterval(autoSlideInterval);
 }
+//for change slider slowly
 function changeEffect(func) {
     bigImage.parentElement.style.backgroundColor = "black";
     bigImage.style.opacity = "0";
@@ -225,6 +232,5 @@ function isValid(char) {
         char !== " " &&
         char !== ")")
         return true;
-
     return false;
 }
