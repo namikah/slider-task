@@ -79,6 +79,7 @@ body {
   height: 200px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  border-radius: 10px;
 }
 
 .container #image-gallery .images-cards a img {

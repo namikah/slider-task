@@ -13,11 +13,11 @@ let uploadIcon = document.querySelector(".upload-icon");
 let uploadBtn = document.querySelector(".upload-btn");
 let autoSlideInterval;
 
-//upload image
+//upload image choose
 uploadIcon.addEventListener("click", () => {
     uploadBtn.click();
 })
-//upload image
+//upload image onloadend
 uploadBtn.addEventListener("change", function (e) {
     const { files } = e.target;
 
@@ -30,7 +30,7 @@ uploadBtn.addEventListener("change", function (e) {
         fileReader.readAsDataURL(file);
     }
 })
-//for enter gallery
+//for enter gallery page
 loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
     let welcomeText = document.createElement("h1");
@@ -71,17 +71,10 @@ loginBtn.addEventListener("click", (e) => {
         username.value = "";
         return;
     }
-
 })
-//image click for biggest
-images.forEach(element => {
-    element.addEventListener("click", function (e) {
-        resetClassList();
-        e.preventDefault();
-        openPopup(this);
-        this.classList.add("show-image");
-        startAutoSlide();
-    })
+//add image click for default pictures
+images.forEach(aTag => {
+   addEventClickToImages(aTag);
 });
 //create new picture box
 function createNewPictureBox(result) {
@@ -91,10 +84,21 @@ function createNewPictureBox(result) {
     aTag.setAttribute("alt", "image");
     aTag.setAttribute("href", result);
     img.setAttribute("src", result);
-    // const h2 = document.createElement("h2");
-    // h2.innerText = file.name;
     aTag.appendChild(img);
     imagesCards.appendChild(aTag);
+    
+    addEventClickToImages(aTag);
+}
+
+//add click event for images
+function addEventClickToImages(aTag){
+    aTag.addEventListener("click", function (e) {
+        e.preventDefault();
+        resetClassList();
+        openPopup(this);
+        this.classList.add("show-image");
+        startAutoSlide();
+    })
 }
 //right-arrow click for change image
 rightArrow.addEventListener("click", (e) => {
