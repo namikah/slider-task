@@ -1,6 +1,5 @@
 let imageGallery = document.querySelector("#image-gallery");
 let imagesCards = document.querySelector(".images-cards");
-let images = document.querySelectorAll(".img-a-source");
 let popup = document.querySelector(".popup");
 let bigImage = document.querySelector(".popup .inner .slider-image img");
 let close = document.querySelector(".popup .inner .close");
@@ -63,7 +62,6 @@ loginBtn.addEventListener("click", (e) => {
             setTimeout(() => {
                 imageGallery.style.opacity = "1";
                 imageGallery.style.transform = "scale(1)";
-
             }, 300);
         }, 800);
     } else {
@@ -72,10 +70,6 @@ loginBtn.addEventListener("click", (e) => {
         return;
     }
 })
-//add image click for default pictures
-images.forEach(aTag => {
-   addEventClickToImages(aTag);
-});
 //create new picture box
 function createNewPictureBox(result) {
     let aTag = document.createElement("a");
@@ -86,20 +80,17 @@ function createNewPictureBox(result) {
     img.setAttribute("src", result);
     aTag.appendChild(img);
     imagesCards.appendChild(aTag);
-    
-    addEventClickToImages(aTag);
 }
-
-//add click event for images
-function addEventClickToImages(aTag){
+//add click event for all images
+document.querySelectorAll(".img-a-source").forEach(aTag => {
+    resetClassList();
     aTag.addEventListener("click", function (e) {
         e.preventDefault();
-        resetClassList();
-        openPopup(this);
         this.classList.add("show-image");
+        openPopup(this);
         startAutoSlide();
     })
-}
+});
 //right-arrow click for change image
 rightArrow.addEventListener("click", (e) => {
     curElement = document.querySelector(".show-image");
@@ -186,7 +177,7 @@ function changePrev(currentElement) {
 }
 //reset all active image class
 function resetClassList() {
-    images.forEach(item => {
+    document.querySelectorAll(".show-image").forEach(item => {
         item.classList.remove("show-image");
     });
 }
