@@ -11,11 +11,11 @@ let loginBtn = document.querySelector(".login-btn");
 let username = document.querySelector(".user-name");
 let uploadIcon = document.querySelector(".upload-icon");
 let uploadBtn = document.querySelector(".upload-btn");
-
+let autoSlideInterval;
+//upload image
 uploadIcon.addEventListener("click", () => {
     uploadBtn.click();
 })
-
 uploadBtn.addEventListener("change", function (e) {
     const { files } = e.target;
 
@@ -23,20 +23,9 @@ uploadBtn.addEventListener("change", function (e) {
         let fileReader = new FileReader();
         fileReader.onloadend = function (e) {
             const { result } = e.target;
-
-            let aTag = document.createElement("a");
-            let img = document.createElement("img");
-            aTag.classList.add("img-a-source");
-            aTag.setAttribute("alt", "image");
-            aTag.setAttribute("href", result);
-            img.setAttribute("src", result);
-            // const h2 = document.createElement("h2");
-            // h2.innerText = file.name;
-            aTag.appendChild(img);
-            imagesCards.appendChild(aTag);
+            createNewPictureBox(result);
         };
         fileReader.readAsDataURL(file);
-        console.log( fileReader);
     }
 })
 
@@ -80,24 +69,34 @@ images.forEach(element => {
         e.preventDefault();
         openPopup(this);
         this.classList.add("show-image");
-        console.log(this);
+        startAutoSlide();
     })
 });
-
-const autoChangeInterval = setInterval(function () {
-    rightArrow.click();
-}, 1000)
-
+//create new picture box
+function createNewPictureBox(result) {
+    let aTag = document.createElement("a");
+    let img = document.createElement("img");
+    aTag.classList.add("img-a-source");
+    aTag.setAttribute("alt", "image");
+    aTag.setAttribute("href", result);
+    img.setAttribute("src", result);
+    // const h2 = document.createElement("h2");
+    // h2.innerText = file.name;
+    aTag.appendChild(img);
+    imagesCards.appendChild(aTag);
+}
 //right-arrow click for change image
 rightArrow.addEventListener("click", (e) => {
     curElement = document.querySelector(".show-image");
-    changeNext(curElement);
+    changeEffect(() => changeNext(curElement));
+    stopAutoSlide();
 })
 
 //left-arrow click for change image
 leftArrow.addEventListener("click", (e) => {
     curElement = document.querySelector(".show-image");
-    changePrev(curElement);
+    changeEffect(() => changePrev(curElement));
+    stopAutoSlide();
 })
 
 //keys action for popup
@@ -105,10 +104,12 @@ document.addEventListener("keydown", (e) => {
     curElement = document.querySelector(".show-image");
     switch (e.code) {
         case "ArrowRight":
-            changeNext(curElement);
+            stopAutoSlide();
+            changeEffect(() => changeNext(curElement));
             break;
         case "ArrowLeft":
-            changePrev(curElement);
+            stopAutoSlide();
+            changeEffect(() => changePrev(curElement));
             break;
         case "Escape":
             closePopup();
@@ -117,7 +118,6 @@ document.addEventListener("keydown", (e) => {
             break;
     }
 })
-
 //close popup with X
 close.addEventListener("click", () => {
     closePopup();
@@ -133,6 +133,7 @@ popup.addEventListener("click", (e) => {
 //close popup function
 function closePopup() {
     popup.style.display = "none";
+    stopAutoSlide();
 }
 
 //open popup function
@@ -179,7 +180,33 @@ function resetClassList() {
         item.classList.remove("show-image");
     });
 }
-
+//start auto slide with interval
+function startAutoSlide() {
+    autoSlideInterval = setInterval(function () {
+        bigImage.parentElement.style.backgroundColor = "black";
+        bigImage.style.opacity = "0";
+        bigImage.style.transition = "1.2s";
+        setTimeout(() => {
+            curElement = document.querySelector(".show-image");
+            changeNext(curElement);
+            bigImage.style.opacity = "1";
+        }, 1000);
+    }, 3000)
+}
+//stop auto slide with interval
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+function changeEffect(func) {
+    bigImage.parentElement.style.backgroundColor = "black";
+    bigImage.style.opacity = "0";
+    bigImage.style.transition = ".5s";
+    setTimeout(() => {
+        bigImage.style.opacity = "1";
+        func();
+    }, 300);
+}
+//check all combination
 function isValid(char) {
     if (char !== "*" &&
         char !== "/" &&

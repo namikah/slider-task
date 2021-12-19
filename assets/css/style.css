@@ -230,9 +230,7 @@ body {
 }
 
 .big-image-slide-effect {
-  -webkit-transition: 2s;
-  transition: 2s;
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 /*# sourceMappingURL=style.css.map */
